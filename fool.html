@@ -298,14 +298,15 @@
 
 <script>
     function sharePrank() {
-        const shareText = "😂 You gotta see this! I just got totally Ghiblified by this Check it out: https://flassalesindia.in/ghiblify";
+        const host = window.location.hostname;
+        const shareText = `😂 You gotta see this! I just got totally Ghiblified by this Check it out: https://${host}/ghiblify`;
 
         // Try Web Share API first
         if (navigator.share) {
             navigator.share({
                 title: "",
                 text: shareText,
-                url: "https://flassalesindia.in/ghiblify"
+                url: `https://${host}/ghiblify`
             }).catch(err => {
                 copyToClipboard();
             });
