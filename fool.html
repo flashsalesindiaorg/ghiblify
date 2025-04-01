@@ -299,14 +299,14 @@
 <script>
     function sharePrank() {
         const host = window.location.hostname;
-        const shareText = `😂 You gotta see this! I just got totally Ghiblified by this Check it out: https://${host}/ghiblify`;
+        const shareText = `😂 You gotta see this! I just got totally Ghiblified by this Check it out: https://${host}`;
 
         // Try Web Share API first
         if (navigator.share) {
             navigator.share({
                 title: "",
                 text: shareText,
-                url: `https://${host}/ghiblify`
+                url: `https://${host}`
             }).catch(err => {
                 copyToClipboard();
             });
