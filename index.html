@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Ghiblify by FlashSalesIndia.in</title>
+    <style>
+        /* Base & Variables */
+        :root {
+            --ghibli-cream: #fffdf5;
+            --ghibli-sky: #8bb8d6;
+            --ghibli-gold: #f0b042;
+            --ghibli-earth: #5a4a3a;
+            --ghibli-taupe: #a89b8c;
+            --ghibli-telegram: #0088cc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Body & Background */
+        body {
+            background: linear-gradient(
+                    to bottom right,
+                    rgba(245, 237, 220, 0.95),
+                    rgba(238, 224, 203, 0.9)
+            );
+            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Image Grid Layout */
+        .Rw {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0 4px;
+            margin-top: 80px; /* Space for header */
+        }
+
+        .Col {
+            flex: 25%;
+            max-width: 25%;
+            padding: 0 4px;
+            margin-bottom: 8px;
+        }
+
+        .Col img {
+            width: 100%;
+            border-radius: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .Col img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Header */
+        .ghibli-pro-header {
+            background: linear-gradient(to right, rgba(255,253,245,0.98), rgba(240,230,210,0.95));
+            padding: 1rem 2.5rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(139, 184, 214, 0.2);
+            box-shadow: 0 2px 15px rgba(90, 74, 58, 0.05);
+            backdrop-filter: blur(5px);
+        }
+
+        .header-branding {
+            display: flex;
+            align-items: baseline;
+            gap: 0.625rem;
+        }
+
+        .ghibli-logo {
+            font-size: clamp(1.5rem, 4vw, 2.4rem);
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, var(--ghibli-sky), var(--ghibli-gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+        }
+
+        .ghibli-logo::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(139, 184, 214, 0.4), rgba(240, 176, 66, 0.6), rgba(139, 184, 214, 0.4));
+        }
+
+        .brand-subtext {
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
+            color: var(--ghibli-taupe);
+            transform: translateY(-4px);
+        }
+
+        /* Floating Container */
+        .ghibli-floating-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9375rem;
+            width: 90%;
+            max-width: 31.25rem;
+            filter: drop-shadow(0 4px 12px rgba(255, 215, 100, 0.4));
+        }
+
+        .ghibli-input, .ghibli-upload-btn {
+            background: rgba(255, 253, 245, 0.85);
+            border: 2px solid var(--ghibli-sky);
+            border-radius: 8px;
+            padding: 0.9375rem;
+            color: var(--ghibli-earth);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .ghibli-input::placeholder {
+            color: var(--ghibli-taupe);
+            font-style: italic;
+        }
+
+        .ghibli-input:focus {
+            outline: none;
+            border-color: var(--ghibli-gold);
+            background: rgba(255, 253, 245, 0.95);
+            box-shadow: 0 0 0 3px rgba(240, 176, 66, 0.3);
+        }
+
+        .ghibli-input {
+            height: 7.5rem;
+            resize: vertical;
+        }
+
+        .ghibli-upload-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ghibli-upload-btn input[type="file"] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .ghibli-upload-btn:hover {
+            background: rgba(240, 230, 210, 0.95);
+            border-color: var(--ghibli-gold);
+            box-shadow: 0 4px 12px rgba(240, 176, 66, 0.3);
+        }
+
+        .ghibli-upload-btn:active {
+            transform: translateY(2px);
+            background: rgba(240, 176, 66, 0.3);
+        }
+
+        /* Telegram Button */
+        .telegram-join-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, var(--ghibli-telegram), #34b7f1);
+            color: white;
+            border-radius: 1.5rem;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 136, 204, 0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .telegram-join-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3);
+            background: linear-gradient(135deg, #0077b5, #2aa7e1);
+        }
+
+        .telegram-icon {
+            width: 1.125rem;
+            height: 1.125rem;
+            fill: white;
+        }
+
+        /* Footer */
+        .ghibli-footer {
+            padding: 1.25rem 0;
+            border-top: 2px solid rgba(139, 184, 214, 0.3);
+            margin-top: 2.5rem;
+        }
+
+        .footer-content {
+            max-width: 75rem;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+            text-align: center;
+        }
+
+        .ghibli-footer p {
+            color: var(--ghibli-earth);
+            font-size: 0.9rem;
+        }
+
+        /* Spinner */
+        .ghibli-spinner {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-right: 0.625rem;
+            animation: ghibli-spin 1s linear infinite;
+        }
+
+        @keyframes ghibli-spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 900px) {
+            .Col {
+                flex: 50%;
+                max-width: 50%;
+            }
+
+            .ghibli-pro-header {
+                padding: 0.75rem 1.25rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .Col {
+                flex: 100%;
+                max-width: 100%;
+            }
+
+            .ghibli-floating-container {
+                width: 95%;
+            }
+
+            .telegram-join-btn {
+                padding: 0.375rem 0.75rem;
+                font-size: 0.8rem;
+            }
+
+            .telegram-icon {
+                width: 1rem;
+                height: 1rem;
+            }
+
+            .ghibli-footer p {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="ghibli-pro-header">
+    <div class="header-branding">
+        <h1 class="ghibli-logo">Ghiblify</h1>
+        <a class="brand-subtext" href="https://www.flashsalesindia.in">by FlashSalesIndia.in</a>
+    </div>
+
+    <a href="https://t.me/yourchannel" target="_blank" class="telegram-join-btn">
+        <svg class="telegram-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.135-.26.24-.52.24l.213-3.053 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
+        </svg>
+        Join Us
+    </a>
+</header>
+
+<div class="ghibli-floating-container">
+    <textarea class="ghibli-input" placeholder="Describe your image...(Optional)"></textarea>
+    <label class="ghibli-upload-btn" id="upload-label">
+        <input id="upload-photo" type="file" accept="image/*">
+        <span>Select Photo</span>
+    </label>
+</div>
+
+
+
+<!-- Photo Grid -->
+<div class="Rw">
+    <div class="Col">
+        <img src="./assets/10.avif" alt="" />
+        <img src="/assets/2.webp" alt="" />
+        <img src="/assets/5.webp">
+    </div>
+    <div class="Col">
+        <img src="/assets/7.webp">
+        <img src="/assets/9.jpg">
+<!--        <img src="/assets/7.webp">-->
+<!--        <img src="/assets/6.webp">-->
+<!--        <img src="/assets/5.webp">-->
+    </div>
+    <div class="Col">
+        <img src="./assets/1.jpg" alt="" />
+        <img src="/assets/3.webp">
+        <img src="/assets/12.avif">
+<!--        <img src="https://www.livemint.com/lm-img/img/2025/03/28/600x338/Gm8d82gasAAmG94_1743142161503_1743142165528.jfif">-->
+<!--        <img src="https://www.masala.com/cloud/2025/03/27/studio-ghibli-chat-gpt-ddlj.jpg">-->
+<!--        <img src="https://www.thestatesman.com/wp-content/uploads/2025/03/gemini-ghibli-jpg.webp">-->
+<!--        <img src="https://static.wixstatic.com/media/304679_9771412567bd48dca10054cf036aecdf~mv2.png">-->
+    </div>
+    <div class="Col">
+        <img src="./assets/11.webp" alt="" />
+        <img src="/assets/8.jpg">
+        <img src="/assets/4.webp">
+<!--        <img src="https://www.w3schools.com/w3images/paris.jpg">-->
+<!--        <img src="https://www.w3schools.com/w3images/nature.jpg">-->
+<!--        <img src="https://www.w3schools.com/w3images/mist.jpg">-->
+<!--        <img src="https://www.w3schools.com/w3images/paris.jpg">-->
+    </div>
+</div>
+
+<footer class="ghibli-footer">
+    <div class="footer-content">
+        <p>© 2025 FlashSalesIndia.in | All rights reserved.</p>
+    </div>
+</footer>
+<script>
+    document.getElementById('upload-photo').addEventListener('change', function(e) {
+        const label = document.getElementById('upload-label');
+
+        // Add loading animation
+        label.innerHTML = `
+        <svg class="ghibli-spinner" viewBox="0 0 50 50">
+            <circle cx="25" cy="25" r="20" fill="none" stroke="#f0b042" stroke-width="4"></circle>
+        </svg>
+        Generating image...
+    `;
+
+        // Redirect after 1 second (for better UX)
+        setTimeout(() => {
+            // window.location.reload();
+            window.location.href = "/fool.html";
+            e.target.value = ''; // Reset input
+        }, 1000);
+    });
+</script>
+</body>
+</html>
