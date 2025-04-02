@@ -1,0 +1,343 @@
+/* ===== Global Variables & Base Styles ===== */
+:root {
+    --ghibli-cream: #fffdf5;
+    --ghibli-sky: #8bb8d6;
+    --ghibli-gold: #f0b042;
+    --ghibli-earth: #5a4a3a;
+    --ghibli-taupe: #a89b8c;
+    --ghibli-telegram: #0088cc;
+    --ghibli-telegram-light: #34b7f1;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: linear-gradient(
+            to bottom right,
+            rgba(248, 240, 227, 0.95),
+            rgba(242, 232, 215, 0.9)
+    );
+    background-attachment: fixed;
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== Header Styles ===== */
+.ghibli-pro-header {
+    background: linear-gradient(to right,
+    rgba(255,253,245,0.98),
+    rgba(240,230,210,0.95));
+    padding: clamp(0.75rem, 3vw, 1.125rem) clamp(1.25rem, 5vw, 2.5rem);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(139, 184, 214, 0.2);
+    box-shadow: 0 2px 15px rgba(90, 74, 58, 0.05);
+    backdrop-filter: blur(5px);
+    width: 100%;
+}
+
+.header-branding {
+    display: flex;
+    align-items: baseline;
+    gap: clamp(0.5rem, 2vw, 0.625rem);
+}
+
+.ghibli-logo {
+    font-size: clamp(1.5rem, 6vw, 2.4rem);
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    background: linear-gradient(135deg, var(--ghibli-sky), var(--ghibli-gold));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    position: relative;
+}
+
+.ghibli-logo::after {
+    content: '';
+    position: absolute;
+    bottom: 0.2em;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg,
+    rgba(139, 184, 214, 0.4),
+    rgba(240, 176, 66, 0.6),
+    rgba(139, 184, 214, 0.4));
+}
+
+.brand-subtext {
+    font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+    color: var(--ghibli-taupe);
+    transform: translateY(-0.2em);
+}
+
+/* ===== Common Components ===== */
+/* Telegram Buttons */
+.telegram-join-btn,
+.telegram-mini-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    background: linear-gradient(135deg,
+    var(--ghibli-telegram),
+    var(--ghibli-telegram-light));
+    color: white;
+    border-radius: 1.5em;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 136, 204, 0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.telegram-join-btn {
+    padding: clamp(0.375rem, 1.5vw, 0.5rem) clamp(0.75rem, 2vw, 1rem);
+    font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+}
+
+.telegram-mini-btn {
+    padding: 0.375rem 0.75rem;
+    font-size: clamp(0.7rem, 2.5vw, 0.8rem);
+    margin: 0.625rem 0;
+}
+
+.telegram-icon {
+    width: clamp(0.875rem, 3.5vw, 1.125rem);
+    height: clamp(0.875rem, 3.5vw, 1.125rem);
+    fill: white;
+}
+
+/* Footer */
+.ghibli-footer {
+    padding: clamp(0.75rem, 3vw, 1.25rem) 0;
+    border-top: 2px solid rgba(139, 184, 214, 0.3);
+    margin-top: auto;
+    text-align: center;
+}
+
+.ghibli-footer p {
+    color: var(--ghibli-earth);
+    font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+    margin: 0;
+}
+
+/* ===== Page 1 Styles (Image Grid) ===== */
+.Rw {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+    margin-top: clamp(4rem, 10vw, 5rem);
+}
+
+.Col {
+    flex: 25%;
+    max-width: 25%;
+    padding: 0 4px;
+    margin-bottom: 8px;
+}
+
+.Col img {
+    width: 100%;
+    border-radius: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.Col img:hover {
+    transform: scale(1.02);
+}
+
+/* Floating Upload Container */
+.ghibli-floating-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9375rem;
+    width: min(95%, 31.25rem);
+    background: rgba(255, 253, 245, 0.85);
+    border-radius: 1.25rem;
+    border: 2px solid var(--ghibli-sky);
+    box-shadow: 0 10px 30px rgba(139, 184, 214, 0.2);
+    padding: clamp(1.25rem, 5vw, 2.5rem);
+    filter: drop-shadow(0 4px 12px rgba(255, 215, 100, 0.4));
+}
+
+.ghibli-input, .ghibli-upload-btn {
+    background: rgba(255, 253, 245, 0.85);
+    border: 2px solid var(--ghibli-sky);
+    border-radius: 0.5rem;
+    padding: 0.9375rem;
+    color: var(--ghibli-earth);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.ghibli-input::placeholder {
+    color: var(--ghibli-taupe);
+    font-style: italic;
+}
+
+.ghibli-input:focus {
+    outline: none;
+    border-color: var(--ghibli-gold);
+    background: rgba(255, 253, 245, 0.95);
+    box-shadow: 0 0 0 3px rgba(240, 176, 66, 0.3);
+}
+
+.ghibli-input {
+    height: 7.5rem;
+    resize: vertical;
+}
+
+.ghibli-upload-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.ghibli-upload-btn input[type="file"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* ===== Page 2 Styles (April Fools) ===== */
+.aprilfool-container {
+    width: min(95%, 37.5rem);
+    padding: clamp(1.25rem, 5vw, 2.5rem);
+    background: rgba(255, 253, 245, 0.85);
+    border-radius: 1.25rem;
+    border: 2px solid var(--ghibli-sky);
+    box-shadow: 0 10px 30px rgba(139, 184, 214, 0.2);
+    margin: clamp(1.25rem, 5vw, 2.5rem) auto;
+}
+
+.prank-image {
+    width: 100%;
+    max-height: min(50vh, 18.75rem);
+    object-fit: cover;
+    border-radius: 1rem;
+    margin: clamp(0.75rem, 3vw, 1.25rem) 0;
+    border: 2px solid var(--ghibli-sky);
+    box-shadow: 0 4px 15px rgba(139, 184, 214, 0.3);
+}
+
+.message-section {
+    text-align: left;
+    margin-top: clamp(0.75rem, 3vw, 1.25rem);
+}
+
+.message-block p,
+.deal-block p,
+.cta-block p {
+    color: var(--ghibli-earth);
+    font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+    margin-bottom: clamp(0.5rem, 2vw, 0.9375rem);
+}
+
+.deal-block ul {
+    padding-left: 1.25rem;
+    margin: clamp(0.5rem, 2vw, 0.9375rem) 0;
+}
+
+.deal-block li {
+    color: var(--ghibli-earth);
+    margin-bottom: 0.5rem;
+    position: relative;
+    list-style-type: none;
+    font-size: clamp(0.85rem, 3vw, 1rem);
+}
+
+.deal-block li:before {
+    content: "•";
+    color: var(--ghibli-gold);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+/* Share Button */
+.share-btn {
+    background: rgba(240, 176, 66, 0.2);
+    border: 1px solid var(--ghibli-gold);
+    color: var(--ghibli-earth);
+    padding: 0.5rem 1rem;
+    border-radius: 1.25rem;
+    font-size: clamp(0.8rem, 3vw, 0.9rem);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.625rem;
+}
+
+/* ===== Responsive Adjustments ===== */
+@media (max-width: 900px) {
+    .Col {
+        flex: 50%;
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 600px) {
+    .Col {
+        flex: 100%;
+        max-width: 100%;
+    }
+
+    .ghibli-floating-container,
+    .aprilfool-container {
+        width: 95%;
+        padding: 1.5rem;
+    }
+}
+
+/* Animations */
+@keyframes ghibli-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.ghibli-spinner {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.625rem;
+    animation: ghibli-spin 1s linear infinite;
+}
+
+/* Hover States */
+.telegram-join-btn:hover,
+.telegram-mini-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3);
+    background: linear-gradient(135deg, #0077b5, #2aa7e1);
+}
+
+.ghibli-upload-btn:hover {
+    background: rgba(240, 230, 210, 0.95);
+    border-color: var(--ghibli-gold);
+    box-shadow: 0 4px 12px rgba(240, 176, 66, 0.3);
+}
+
+.share-btn:hover {
+    background: rgba(240, 176, 66, 0.3);
+    transform: translateY(-2px);
+}
